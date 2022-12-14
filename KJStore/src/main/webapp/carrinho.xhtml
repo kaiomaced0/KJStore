@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="templateoff.xhtml">
+<ui:define name="content">
+
+	<h1 class="text-center wdi-red">Carrinho de Compras</h1>
+	<h1 class="text-center wdi-red">
+		<p:commandButton value="Finalizar Compra" action="finalizarCompra.xhtml"/>
+	</h1>
+	<h:form id="formDataTable">
+	    <div class="card">
+	        <p:dataTable var="produtos" value="#{carrinhoController.produtosCarrinho}">
+	            <p:column >
+	               <p:graphicImage library="images" name="produto.png" width="15%" /> 
+	            </p:column>
+	
+	            <p:column headerText="Produto">
+	                <h:outputText value="#{produtos.produto.nome}" />
+	            </p:column>
+	
+	            <p:column headerText="Quantidade">
+	                <h:outputText value="#{produtos.quantidade}" />
+	            </p:column>
+	
+	            <p:column headerText="Preço">
+                    <h:outputText style="font-weight: bold; " value="#{produtos.valor}" >
+                		<f:convertNumber  currencySymbol="R$" type="currency"/>
+                	</h:outputText>
+	            </p:column>
+	            
+	            <p:column headerText="Ação">
+	            	 
+	                 <p:commandButton
+	                 	title="Remover"
+	                 	type="button" 
+	                 	icon="pi pi-minus" 
+	                 	styleClass="rounded-button ui-button-danger ui-button-outlined" />
+	                 <span/>
+	                 <p:commandButton 
+	                 	title="Adicionar"
+	                 	type="button" 
+	                 	icon="pi pi-plus" 
+	                 	styleClass="rounded-button" />
+	            </p:column>
+	        </p:dataTable>
+	    </div>
+	</h:form>
+</ui:define>
+</ui:composition>	
+	
+</html>

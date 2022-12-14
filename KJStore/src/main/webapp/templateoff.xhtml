@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+  <title>_Store KJ_</title>
+  <meta charset="utf-8"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+	<h:outputStylesheet library="webjars" name="primeflex/3.2.0/primeflex.min.css" />
+  <h:outputStylesheet library="css" name="style_produtos.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  
+	  .container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		}
+  
+    .navbar {
+      margin-bottom: 0px;
+      border-radius: 0;
+    }
+	.jumbotron {
+      padding-top: ;
+      padding-bottom: 20px;
+	  background-color: #f4511e; /* Orange */
+	  color: #ffffff;
+      margin-bottom: 0;
+	}
+	
+ 	.ui-dataview .ui-dataview-header {
+		display: none;
+	} 
+	
+	footer {
+	  font-size: 20px;
+	  margin: 20px;
+	  color: #f4511e;
+	}
+	
+  </style>
+</h:head>
+<h:body>
+
+	<div class="jumbotron text-center" style="height: 170px;">
+		<h1  style="margin-top: 10px; font-size: 60px;">Store KJ</h1>
+  		<p>Qualidade é aqui!</p>
+		<h:form styleClass="form-inline">
+			
+		</h:form>
+	</div>
+ <h:form>
+<nav class="navbar navbar-inverse" style="height: 52px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand"><p:graphicImage library="images" name="logo.png" width="15%" href="home.xhtml"/></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="home.xhtml">Home</a></li>
+        <li><a href="amei.xhtml">Gostei</a></li>
+        <li><a href="https://github.com/kaiomaced0">Contact</a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      		<li><h:outputLabel style="color: #9d9d9d; padding: 15px; display: block;"
+      			rendered="#{templateController.usuarioLogado != null}">
+      			<span class="glyphicon glyphicon-user"/>
+      			Olá #{templateController.usuarioLogado.nome}
+      		</h:outputLabel>
+      		</li>	
+        <li>
+        	<h:commandLink 
+        		rendered="#{templateController.usuarioLogado != null}" 
+        		action="#{templateController.encerrarSessao}">
+        		<span class="glyphicon glyphicon-log-out"/>
+        		Sair
+        	</h:commandLink>
+        
+        </li>
+        <li>
+        	<a href="carrinho.xhtml" id="carrinhoId">
+        	     <p:badge value="#{templateController.getQuantidadeCarrinho()}">
+			         <i class="pi pi-shopping-cart" style="font-size: 2rem"/>
+			     </p:badge>
+        		 Carrinho
+        	</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</h:form>
+<ui:insert  name="content">
+
+
+</ui:insert>
+</h:body>
+<p:growl id="growl" showDetail="true" life="1600" />
+<footer class="container-fluid text-center">
+  <p><a href="https://www.unitins.br" title="Visite a Unitins">Unitins</a></p>
+</footer>
+
+</html>
