@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	<persistence-unit name="KJStore">
-	<class>br.unitins.kj.converter.BandeiraCartaoConverter</class>
-	<class>br.unitins.kj.converter.PeriflConverter</class>
-	<class>br.unitins.kj.converter.TipoPagamentoConverter</class>
-	<class>br.unitins.kj.model.AcompanhamentoCompra</class>
-	<class>br.unitins.kj.model.Carrinho</class>
-	<class>br.unitins.kj.model.Cartao</class>
-	<class>br.unitins.kj.model.Chat</class>
-	<class>br.unitins.kj.model.Cidade</class>
-	<class>br.unitins.kj.model.Compra</class>
-	<class>br.unitins.kj.model.DefaultEntity</class>
-	<class>br.unitins.kj.model.Endereco</class>
-	<class>br.unitins.kj.model.Estado</class>
-	<class>br.unitins.kj.model.Pagamento</class>
-	<class>br.unitins.kj.model.Produto</class>
-	<class>br.unitins.kj.model.ProdutoQuantidade</class>
-	<class>br.unitins.kj.model.Usuario</class>
-	<class>br.unitins.kj.model.especial.Cupom</class>
-	<class>br.unitins.kj.model.especial.Gostei</class>
-	
-	<properties>
+		<class>br.unitins.kj.converter.BandeiraCartaoConverter</class>
+		<class>br.unitins.kj.converter.PeriflConverter</class>
+		<class>br.unitins.kj.converter.TipoPagamentoConverter</class>
+		<class>br.unitins.kj.model.AcompanhamentoCompra</class>
+		<class>br.unitins.kj.model.Carrinho</class>
+		<class>br.unitins.kj.model.Cartao</class>
+		<class>br.unitins.kj.model.Chat</class>
+		<class>br.unitins.kj.model.Cidade</class>
+		<class>br.unitins.kj.model.Compra</class>
+		<class>br.unitins.kj.model.DefaultEntity</class>
+		<class>br.unitins.kj.model.Endereco</class>
+		<class>br.unitins.kj.model.Estado</class>
+		<class>br.unitins.kj.model.Pagamento</class>
+		<class>br.unitins.kj.model.Produto</class>
+		<class>br.unitins.kj.model.ProdutoQuantidade</class>
+		<class>br.unitins.kj.model.Usuario</class>
+		<class>br.unitins.kj.model.especial.Cupom</class>
+		<class>br.unitins.kj.model.especial.Gostei</class>
+
+		<properties>
 			<!-- DB Driver -->
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
@@ -49,7 +52,10 @@
 
 			<!-- Show SQL formatted -->
 			<property name="hibernate.format_sql" value="true" />
-	</properties>
-	
+			<property
+				name="javax.persistence.schema-generation.create-source"
+				value="metadata-then-script" />
+		</properties>
+
 	</persistence-unit>
 </persistence>

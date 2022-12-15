@@ -1,139 +1,209 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
-  <title>_Store KJ_</title>
-  <meta charset="utf-8"/>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-	<h:outputStylesheet library="webjars" name="primeflex/3.2.0/primeflex.min.css" />
-  <h:outputStylesheet library="css" name="style_produtos.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-  
-	  .container {
+	<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial;
+	padding: 10px;
+	background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+	padding: 30px;
+	text-align: center;
+	background: white;
+}
+
+.header h1 {
+	font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+	float: left;
+	width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+	float: left;
+	width: 25%;
+	background-color: #f1f1f1;
+	padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+	background-color: #aaa;
+	width: 100%;
+	padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+	background-color: white;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Footer */
+.footer {
+	padding: 20px;
+	text-align: center;
+	background: #ddd;
+	margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+	.leftcolumn, .rightcolumn {
 		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		}
-  
-    .navbar {
-      margin-bottom: 0px;
-      border-radius: 0;
-    }
-	.jumbotron {
-      padding-top: 20px;
-      padding-bottom: 20px;
-	  background-color: #f4511e; /* Orange */
-	  color: #ffffff;
-      margin-bottom: 0;
+		padding: 0;
 	}
-	
- 	.ui-dataview .ui-dataview-header {
-		display: none;
-	} 
-	
-	footer {
-	  font-size: 20px;
-	  margin: 20px;
-	  color: #f4511e;
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+	.topnav a {
+		float: none;
+		width: 100%;
 	}
-	
-  </style>
+}
+
+.ui-dataview .ui-dataview-header {
+	display: none;
+}
+
+.jumbotron {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: red; /* Orange */
+	color: #ffffff;
+	margin-bottom: 0;
+}
+</style>
 </h:head>
 <h:body>
 
-	<div class="jumbotron text-center" style="height: 170px;">
-		<h1  style="margin-top: 10px; font-size: 60px;">Store KJ</h1>
-  		<p>Qualidade é aqui!</p>
-		<h:form styleClass="form-inline">
-			<div class="input-group" >
-				<input jsf:id = "nome" jsf:value="#{templateController.nomeProduto}" type="text" class="form-control" size="50"
-					placeholder="Pesquisar por um produto ..." required="true"/>
+	<div class="header jumbotron">
+		<h1>KJ Store</h1>
+		<p>Qualidade é aqui!</p>
+	</div>
+
+	<p:growl id="growl" showDetail="true" life="1600" />
+
+	<h:form>
+		<div class="topnav">	
+			<a href="home.xhtml">Home</a>
+			<div class="input-group" style="color: #f4511e;">
+				<input jsf:id="nome" jsf:value="#{templateController.nomeProduto}"
+					type="text" class="form-control" size="50"
+					placeholder="Pesquisar por um produto ..." required="true" />
 				<div class="input-group-btn">
-					
-						<h:commandButton 
-							value="Pesquisar" 
-							action="#{templateController.pesquisarProduto}" 
-							styleClass="btn btn-danger">
-							<f:ajax execute="@this nome" render="@all"/>
-							
-						</h:commandButton>
-					
+
+						<h:commandButton value="Pesquisar"
+						action="#{templateController.pesquisarProduto}"
+						styleClass="btn btn-danger">
+						<f:ajax execute="@this nome" render="@all" />
+
+					</h:commandButton>
+
 				</div>
 			</div>
-		</h:form>
-	</div>
- <h:form>
-<nav class="navbar navbar-inverse" style="height: 52px;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><p:graphicImage library="images" name="logo.png" width="15%" /></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="home.xhtml">Home</a></li>
-        <li><a href="amei.xhtml">Gostei</a></li>
-        <li><a href="https://github.com/kaiomaced0">Contact</a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <h:outputLabel 
-      			rendered="#{templateController.usuarioLogado != null}">
+
+			<div style="float: right">
+
+				<a href="carrinho.xhtml"> <i class="pi pi-shopping-cart" /> <p:badge
+						styleClass="mr-1" style="font-size: 10px"
+						value="#{templateController.getQuantidadeCarrinho()}">
+					</p:badge>
+				</a> <a> <h:outputLabel
+						rendered="#{templateController.usuarioLogado != null}">
      
-      			Olá #{templateController.usuarioLogado.nome}
-      		</h:outputLabel>   
-      		<li><h:outputLabel style="color: #9d9d9d; padding: 15px; display: block;"
-      			rendered="#{templateController.usuarioLogado != null}">
-      			<span class="glyphicon glyphicon-user"/>
-      			Olá #{templateController.usuarioLogado.nome}
+      			Hello #{templateController.usuarioLogado.nome}
       		</h:outputLabel>
-      		</li>	
-        <li>
-        	<h:commandLink 
-        		rendered="#{templateController.usuarioLogado != null}" 
-        		action="#{templateController.encerrarSessao}">
-        		<span class="glyphicon glyphicon-log-out"/>
+				</a> <a> <h:commandLink
+						rendered="#{templateController.usuarioLogado != null}"
+						action="#{templateController.encerrarSessao}">
+        		
         		Sair
         	</h:commandLink>
-        
-        </li>
-        <li>
-        	<a href="carrinho.xhtml" id="carrinhoId">
-        	     <p:badge value="#{templateController.getQuantidadeCarrinho()}">
-			         <i class="pi pi-shopping-cart" style="font-size: 2rem"/>
-			     </p:badge>
-        		 Carrinho
-        	</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</h:form>
-<ui:insert  name="content">
+				</a>
+
+			</div>
+		</div>
+	</h:form>
+	<div class="row">
+
+		<div class="card">
+			<ui:insert name="content">
 
 
-</ui:insert>
-<p:growl id="growl" showDetail="true" life="1600" />
-<footer class="container-fluid text-center">
-  <p> <a href="https://www.unitins.br" title="Visite a Unitins">Unitins</a></p>
-</footer>
+			</ui:insert>
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<h2>UNITINS | Tópicos em Programação I</h2>
+	</div>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<div class="text-center">
+			<p:graphicImage library="images" name="loading.gif" width="50%" />
+		</div>
+	</p:dialog>
+
 </h:body>
 </html>

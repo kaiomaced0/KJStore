@@ -20,7 +20,10 @@ import br.unitins.kj.repository.ProdutoRepository;
 @ViewScoped
 public class TemplateController implements Serializable {
 
-	private static final long serialVersionUID = -2374300519878584592L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2777611273447498474L;
 
 	private String nomeProduto;
 	
